@@ -20,11 +20,9 @@ $ go get github.com/dinever/golf
 
 [MIT License](https://opensource.org/licenses/MIT)
 
-Quickstart
-==========
+# Quickstart
 
-A Simple Application
---------------------
+## A Simple Application
 
 To get started with a simple Golf application, create a file named `app.go`:
 
@@ -52,8 +50,7 @@ $ go run main.go
 
 Then you should be able to see the result if you take a look at [<http://localhost:9000>].
 
-Routing
--------
+## Routing
 
 Routing in Golf is easy. Here are some examples:
 
@@ -77,8 +74,7 @@ p, ok := ctx.Params["page"]
 
 Other than **GET** and **POST**, you can use methods `App.Put` and `App.Delete` to handle **PUT** and **DELETE** requests.
 
-Static Files
-------------
+## Static Files
 
 Static files, like stylesheets and javascript files can be handled easily by calling `App.Static`:
 
@@ -89,8 +85,7 @@ App.Static("/static/", "resources")
 
 The first argument is the URL path for static files, the second argument is the path of the folder holding static files on your filesystem. Please notice that Golf supports serving multiple folders into one URL root PATH, which means that if you set Golf like the above example, when user requested `/static/style.css`, Golf will firstly lookup the file `style.css` in the folder `static`, and continue looking up the same file in the folder `resources` if it is not found in the previous folder.
 
-Rendering Templates
-===================
+## Rendering Templates
 
 If you are familiar with the Django/Jinja2 style template syntax, it may not comfortable for you to get in touch with the Go style template, especially the template inheritence part. However, using Golf you can handle it like a charm. Let’s take a look at an example:
 
@@ -130,8 +125,7 @@ The first step is to indicating a template loader for `App.View`. The first argu
 
 After the template loader is set, you can render templates inside the loader by calling `ctx.Loader("loader_name").Render("file_name", data)`. Indicating a template loader before calling Render is necessary, otherwise Golf can not find out the template file.
 
-Redirection
-===========
+## Redirection
 
 Simple call `ctx.Redirect` with the path as an argument. By default Golf set the status code to 301. If you want a 302 Redirection, please manually set the header as 302 after calling `ctx.Redirect`.
 
@@ -139,8 +133,7 @@ Simple call `ctx.Redirect` with the path as an argument. By default Golf set the
 ctx.Redirect("/foo")
 ```
 
-Error Handling
-==============
+## Error Handling
 
 You can use `Golf.Error` to set handlers for different type of errors like the following:
 
