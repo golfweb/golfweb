@@ -6,7 +6,7 @@ layout: default
 
 [![Build Status](https://drone.io/github.com/dinever/golf/status.png)](https://drone.io/github.com/dinever/golf/latest)
 
-A web framework in Go.
+Golf is a fast, simple and lightweight micro-web framework for Go. It comes with powerful features and has no dependencies other than the Go Standard Library.
 
 Homepage: [golf.readthedocs.org](http://golf.readthedocs.org)
 
@@ -19,6 +19,57 @@ $ go get github.com/dinever/golf
 ## License
 
 [MIT License](https://opensource.org/licenses/MIT)
+
+# Features
+
+## Better Template Inheritence
+
+Using Golf, you can easily apply template inheritence like this:
+
+`index.html`:
+
+```html
+{% raw %}{{ extends "/default.layout" }}
+
+{{ define "content" }}
+  Some text.
+{{ end }}{% endraw %}
+```
+
+`default.layout`:
+
+```html
+{% raw %}<!DOCTYPE html>
+<html>
+  <body>
+    {{ template "content" }}
+  </body>
+</html>{% endraw %}
+```
+
+## Dead Simple Middlewares
+
+Define a middleware like this:
+
+```go
+func AuthMiddleware(next Golf.Handler) Golf.Handler {
+  fn := func(ctx *Golf.Context) {
+    if authenticate(ctx) {
+      next(ctx)
+    } else {
+      NotFoundHandler(ctx)
+    }
+  }
+  return fn
+}
+```
+
+Define a middleware chain, and pass it to a route with the final handler.
+
+```go
+authChain := Golf.NewChain(handler.AuthMiddleware)
+App.Get("/admin/", authChain.Final(handler.AdminHandler))
+```
 
 # Quickstart
 
