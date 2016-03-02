@@ -3,14 +3,16 @@
 body {
   background-color: #fff;
   padding:50px;
-  font: 14px/1.5 "Noto Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
   color:#727272;
-  font-weight:400;
+  font-family: 'Lato', sans-serif;
+  font-weight: 300;
 }
 
 h1, h2, h3, h4, h5, h6 {
   color:#222;
   margin:0 0 20px;
+  font-family: 'Lato', sans-serif;
+  font-weight: 300;
 }
 
 p, ul, ol, table, pre, dl {
